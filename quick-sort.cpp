@@ -8,56 +8,33 @@ void swap(int *a, int *b){
     *b = temp;
 }
 
-// int partition(int *arr, int l, int h){
-//     int i;
-//     int p;
-//     int firsthigh;
-
-//     p = h;
-//     firsthigh = l;
-//     for(i = l; i < h; i++){
-//         if(arr[i] < arr[p]){
-//             swap(&arr[i], &arr[firsthigh]);
-//             firsthigh++;
-//         }
-//     }
-//     swap(&arr[p], &arr[firsthigh]);
-//     return firsthigh;
-// }
-
-// void quicksort(int *arr, int l, int h){
-//     int p;
-//     if((h-l)>0){
-//         p = partition(arr, l, h);
-//         quicksort(arr,l,p-1);
-//         quicksort(arr,p+1,h);
-//     }
-// }
-
 int partition(int *arr, int l, int h){
+    int i;
     int p;
     int firsthigh;
-    int i;
+
     p = h;
     firsthigh = l;
     for(i = l; i < h; i++){
         if(arr[i] < arr[p]){
-            swap(&arr[i],&arr[firsthigh]);
+            swap(&arr[i], &arr[firsthigh]);
             firsthigh++;
         }
     }
-    swap(&arr[p],&arr[firsthigh]);
+    swap(&arr[p], &arr[firsthigh]);
     return firsthigh;
 }
 
-void quicksort(int *arr, int h, int l){
+void quicksort(int *arr, int l, int h){
     int p;
-    if((h-l) > 0){
-        p = partition(arr, h, l);
+    if((h-l)>0){
+        p = partition(arr, l, h);
         quicksort(arr,l,p-1);
         quicksort(arr,p+1,h);
     }
 }
+
+
 
 int main(int argc, char const *argv[])
 {
