@@ -3,42 +3,38 @@
 
 struct Graph
 {
-	int v;
 	int e;
-	int **adj;
+	int v;
+	int *adj;
 };
 
-struct Graph *adjacenyMatrixOfGraph()
+struct nodeList
 {
-	int i, u, v;
+	int vertexNumber;
+	struct nodeList *next;
+};
 
+struct Graph *adjList()
+{
+	int i, x, y;
+	struct nodeList *temp;
 	struct Graph *G = (struct Graph *)malloc(sizeof(struct Graph));
-	G->adj = malloc(sizeof(G->v * G->v));
 	if (!G)
 	{
-		printf("memory error !!");
+		printf('memory error!!!');
 		return NULL;
 	}
+	printf("number of vertices: ");
+	scanf(&G->v);
+	printf("number of edges: ");
+	scanf(&G->e);
 
-	scanf("No. of vertices: %d, Number of edges: %d", &G->v, &G->e);
-	for (u = 0; u < G->v; u++)
-	{
-		for (v = 0; v < G->v; v++)
-		{
-			G->adj[v][v] = 0;
-		}
-	}
-	for (i = 0; i < G->e; i++)
-	{
-		scanf("reading edge: %d %d", &u, &v);
-		// for undirected graph
-		G->adj[u][v] = 1;
-		G->adj[v][u] = 1;
-	}
-}
+	G->adj = malloc(G->v * sizeof(struct nodeList));
 
-int main(int argc, char const *argv[])
-{
-	struct Graph *temp = adjacenyMatrixOfGraph();
-	return 0;
+	for (i = 0; i < G->v; i++)
+	{
+		G->adj[i] = (struct nodeList *)malloc(sizeof(struct nodeList));
+		G->adj[i]->vertexNumber = i;
+		G->adj[i]->next = G->adj[i];
+	}
 }
